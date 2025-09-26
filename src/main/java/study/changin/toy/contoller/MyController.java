@@ -3,6 +3,7 @@ package study.changin.toy.contoller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyController {
@@ -19,5 +20,11 @@ public class MyController {
         //이는 Template engine dependency (여기서는 Thymeleaf)
         //에서 model이라는 아키텍처 영역에서, 데이터를 가지고 와,
         //html template를 완성하고 html을 클라이언트에게 보낸다.
+    }
+
+    @GetMapping("hello-mvc")
+    public String helloMvc(@RequestParam("name") String name, Model model){
+        model.addAttribute("name", name);
+        return "hello-template";
     }
 }
