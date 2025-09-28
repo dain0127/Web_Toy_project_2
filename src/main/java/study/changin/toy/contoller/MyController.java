@@ -55,8 +55,7 @@ public class MyController {
 
     /* ========= 3. api를 이용한, 데이터 전송 방식 =========== */
     @GetMapping("hello-response_body")
-    @ResponseBody //얘 같은 경우에는, return값이
-                    // response의 body데이터에 그대로 들어간다.
+    @ResponseBody //얘 같은 경우에는, return값이 response의 body데이터에 그대로 들어간다.
     public String helloString(@RequestParam("name") String name){
         return "it's response body data : " + name;
     }

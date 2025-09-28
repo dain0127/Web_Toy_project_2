@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>GET 방식 이름 전송</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 2rem; line-height: 1.5; }
+    form { display: grid; gap: 0.75rem; max-width: 360px; }
+    label { font-weight: 600; }
+    input[type="text"] { padding: 0.6rem 0.8rem; border: 1px solid #ccc; border-radius: 8px; }
+    button { padding: 0.6rem 0.8rem; border: 0; border-radius: 8px; cursor: pointer; }
+    button[type="submit"] { background: #2b6ef3; color: #fff; }
+    small { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>이름 전송 (GET)</h1>
+
+  <!-- action은 서버의 엔드포인트로 변경하세요. 예: /hello, /greet 등 -->
+  <form method="get" action="/join_result">
+    <label for="name">이름</label>
+    <input id="name" name="name" type="text" placeholder="홍길동" required />
+    <button type="submit">전송</button>
+    <small>전송 시 주소창에 <code>?name=입력값</code> 형태의 쿼리스트링이 붙습니다.</small>
+  </form>
+
+  <!-- 참고: 서버 없이 동작 확인하고 싶다면 action을 빈 값으로 두면 현재 파일로 GET 전송됩니다.
+       예: <form method="get" action=""> -->
+</body>
+</html>
