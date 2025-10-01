@@ -1,5 +1,6 @@
 package study.changin.toy.repository;
 
+import jakarta.persistence.EntityManager;
 import study.changin.toy.domain.Member;
 
 import java.util.List;
@@ -9,23 +10,31 @@ public class JpaMemberRepository implements MemberRepository {
 
     private final EntityManager em;
 
+    public JpaMemberRepository(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public Member save(Member member) {
-        return null;
+        em.persist(member);
+        return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        return Optional.empty();
+        Member mem = em.find(Member.class, id);
+        return Optional.ofNullable(mem);
     }
 
     @Override
     public Optional<Member> findByName(String name) {
-        return Optional.empty();
+        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+                .setParameter("name", name).getResultList();
+        return result.stream().findAny();
     }
 
     @Override
     public List<Member> findAll() {
-        return List.of();
+        return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 }

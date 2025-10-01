@@ -1,13 +1,11 @@
 package study.changin.toy;
 
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import study.changin.toy.contoller.MemberContoller;
-import study.changin.toy.repository.JdbcMemberRepository;
-import study.changin.toy.repository.JdbcTemplateMemberRepository;
-import study.changin.toy.repository.MemberRepository;
-import study.changin.toy.repository.MemoryMemberRepository;
+import study.changin.toy.repository.*;
 import study.changin.toy.service.MemberService;
 
 import javax.sql.DataSource;
@@ -17,11 +15,20 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
+    /*
     private DataSource dataSource;
 
     @Autowired
     public SpringConfig(DataSource ds){
         this.dataSource=ds;
+    }
+    */
+
+    private EntityManager em;
+
+    @Autowired
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
     }
 
     //@Bean은 클래스가 아니라 메서드에 붙여서
@@ -33,10 +40,12 @@ public class SpringConfig {
         return new MemberService(memberRepository());
     }
 
+
     @Bean
     public MemberRepository memberRepository(){
         //return new MemoryMemberRepository();
-        return new JdbcTemplateMemberRepository(dataSource);
+        //return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
 }

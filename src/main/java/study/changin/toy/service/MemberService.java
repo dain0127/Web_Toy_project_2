@@ -2,6 +2,7 @@ package study.changin.toy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import study.changin.toy.domain.Member;
 import study.changin.toy.repository.MemberRepository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-
+@Transactional
 public class MemberService {
     private final MemberRepository repo;
 
