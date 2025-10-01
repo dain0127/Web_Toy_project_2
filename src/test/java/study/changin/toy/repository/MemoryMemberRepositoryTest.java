@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class MemoryMemberRepositoryTest {
-    MemberRepository memberRepository = new MemoryMemberRepository();
+    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
 
     //@AfterEach의 경우
     //class단에서 실행을 하는 경우, 각각의 test 메소드가 실행된 직후.

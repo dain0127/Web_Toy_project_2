@@ -3,23 +3,22 @@ package study.changin.toy.service;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import study.changin.toy.domain.Member;
+import study.changin.toy.repository.MemberRepository;
 import study.changin.toy.repository.MemoryMemberRepository;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MemberServiceTest {
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-    @AfterEach
-    public void afterEach() {
-    }
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
+
     @Test
     public void 회원가입() throws Exception {
         //Given

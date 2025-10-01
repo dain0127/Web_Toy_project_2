@@ -6,7 +6,6 @@ import study.changin.toy.domain.Member;
 import java.util.*;
 
 
-@Repository
 public class MemoryMemberRepository implements MemberRepository{
     private final static Map<Long, Member> members = new HashMap<Long,Member>();
     private static Long count = 0L;
@@ -35,8 +34,7 @@ public class MemoryMemberRepository implements MemberRepository{
         return new ArrayList<>(members.values());
     }
 
-    @Override
-    public void clean() {
+    public void clean(){
         members.clear();
     }
 }
