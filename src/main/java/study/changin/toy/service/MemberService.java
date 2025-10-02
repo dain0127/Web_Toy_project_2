@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @Transactional
 public class MemberService {
     private final MemberRepository repo;
-
 
     //외부(예를 들면 테스트 케이스)에서 참조값 주입
     public MemberService(MemberRepository repo) {
